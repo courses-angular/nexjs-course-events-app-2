@@ -1,13 +1,21 @@
-import { getFeaturedEvents } from "@/public/mock";
+import { getAllEvents } from "@/public/mock";
 import FeaturedEventsList from "@/components/events/FeaturedEventsList";
+import EventsSearch from "@/components/events/EventsSearch";
+import { useRouter } from "next/router";
 
 const AllEventsPage = () => {
-  const featuredEvents = getFeaturedEvents();
+  const allEvents = getAllEvents();
+  const router = useRouter();
+  const onFindEventsHandler = (year: string, month: string) => {
+    const fullPath = `/events/${year}/${month}`;
+    router.push(fullPath);
+  };
 
   return (
     <div>
-      <h1>Events Page</h1>
-      <FeaturedEventsList events={featuredEvents} />
+      <h1>All Events Page</h1>
+      <EventsSearch onSearch={onFindEventsHandler} />
+      <FeaturedEventsList events={allEvents} />
     </div>
   );
 };

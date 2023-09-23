@@ -13,7 +13,6 @@ const EventDetailPage = () => {
     return <p>No event found!</p>;
   }
 
-  console.log(selectedEvent);
   return (
     <Fragment>
       <EventSummary title={selectedEvent.title} />
@@ -23,7 +22,9 @@ const EventDetailPage = () => {
         image={selectedEvent.image}
         imageAlt={selectedEvent.title}
       />
-      <EventContent>{selectedEvent.description}</EventContent>
+      <EventContent>
+        <p>{selectedEvent.description}</p>
+      </EventContent>
     </Fragment>
   );
 };
