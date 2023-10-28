@@ -32,6 +32,17 @@ const FilteredEventsPage = () => {
     "https://nextjs-course-b1a4b-default-rtdb.firebaseio.com/events.json",
     fetcher
   );
+
+  const pageHeadData = (
+    <Head>
+      <title>Filtered events</title>
+      <meta
+        name="description"
+        content={`All events for  ${numMonth}/${numYear}`}
+      />
+    </Head>
+  );
+
   useEffect(() => {
     if (data) {
       const events: FeaturedEvent[] = [];
@@ -48,6 +59,7 @@ const FilteredEventsPage = () => {
   if (!allEvents) {
     return (
       <Fragment>
+        {pageHeadData}
         <p className="center"> Loading...</p>
         <div className="center">
           <Button link="/events">Show all events</Button>
@@ -69,6 +81,7 @@ const FilteredEventsPage = () => {
   ) {
     return (
       <Fragment>
+        {pageHeadData}
         <ErrorAlert>
           <p>Invalid filter.Please adjust your values</p>
         </ErrorAlert>
@@ -90,6 +103,7 @@ const FilteredEventsPage = () => {
   if (!filteredClientEvents || filteredClientEvents.length === 0) {
     return (
       <Fragment>
+        {pageHeadData}
         <ErrorAlert>
           <p>No events found for the chosen filter</p>
         </ErrorAlert>
@@ -102,13 +116,7 @@ const FilteredEventsPage = () => {
   return (
     <div>
       <Fragment>
-        <Head>
-          <title>Filtered events</title>
-          <meta
-            name="description"
-            content={`All events for  ${numMonth}/${numYear}`}
-          />
-        </Head>
+        {pageHeadData}
         <ResultsTitle date={formattedDate} />
         <FeaturedEventsList events={filteredClientEvents} />
       </Fragment>
