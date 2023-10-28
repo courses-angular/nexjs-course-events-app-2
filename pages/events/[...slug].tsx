@@ -6,6 +6,7 @@ import { FeaturedEvent } from "@/pages/models/featured_event";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import Head from "next/head";
 
 interface Props {
   filteredEvents: Array<FeaturedEvent>;
@@ -85,7 +86,6 @@ const FilteredEventsPage = () => {
       eventDate.getMonth() === numMonth - 1
     );
   });
-  console.log("data", data);
 
   if (!filteredClientEvents || filteredClientEvents.length === 0) {
     return (
@@ -102,6 +102,13 @@ const FilteredEventsPage = () => {
   return (
     <div>
       <Fragment>
+        <Head>
+          <title>Filtered events</title>
+          <meta
+            name="description"
+            content={`All events for  ${numMonth}/${numYear}`}
+          />
+        </Head>
         <ResultsTitle date={formattedDate} />
         <FeaturedEventsList events={filteredClientEvents} />
       </Fragment>

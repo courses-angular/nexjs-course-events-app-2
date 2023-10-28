@@ -5,6 +5,7 @@ import EventLogistics from "@/components/event-detail/event-logistics";
 import EventContent from "@/components/event-detail/event-content";
 import Button from "@/components/ui/Button";
 import { FeaturedEvent } from "@/pages/models/featured_event";
+import Head from "next/head";
 
 interface Props {
   selectedEvent: FeaturedEvent;
@@ -29,6 +30,10 @@ const EventDetailPage = ({ selectedEvent }: Props) => {
 
   return (
     <Fragment>
+      <Head>
+        <title>{selectedEvent.title}</title>
+        <meta name="description" content="Selected event page" />
+      </Head>
       <EventSummary title={selectedEvent.title} />
       <EventLogistics
         date={selectedEvent.date}

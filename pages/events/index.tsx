@@ -3,6 +3,7 @@ import FeaturedEventsList from "@/components/events/FeaturedEventsList";
 import EventsSearch from "@/components/events/EventsSearch";
 import { useRouter } from "next/router";
 import { FeaturedEvent } from "@/pages/models/featured_event";
+import Head from "next/head";
 
 interface Props {
   events: Array<FeaturedEvent>;
@@ -18,6 +19,10 @@ const AllEventsPage = ({ events }: Props) => {
 
   return (
     <div>
+      <Head>
+        <title>All Events</title>
+        <meta name="description" content="All events page" />
+      </Head>
       <h1>All Events Page</h1>
       <EventsSearch onSearch={onFindEventsHandler} />
       <FeaturedEventsList events={events} />
